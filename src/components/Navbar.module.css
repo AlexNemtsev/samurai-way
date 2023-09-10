@@ -1,0 +1,14 @@
+.nav {
+  grid-area: n;
+  background-color: burlywood;
+}
+
+.nav ul {
+  list-style: none;
+  padding: 0;
+}
+
+.item a {
+  color: white;
+  text-decoration: none;
+}
