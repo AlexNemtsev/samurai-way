@@ -4,10 +4,10 @@ export const Navbar = () => (
     <nav className={styles.nav}>
         <ul>
             <li className={styles.item}>
-                <a href="">Profile</a>
+                <a href="/profile">Profile</a>
             </li>
             <li className={styles.item}>
-                <a href="">Messages</a>
+                <a href="/messages">Messages</a>
             </li>
             <li className={styles.item}>
                 <a href="">News</a>
