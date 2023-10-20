@@ -1,13 +1,12 @@
 import styles from './Profile.module.css';
-import { MyPosts } from './MyPosts/MyPosts';
+import { MyPosts, MyPostsProps } from './MyPosts/MyPosts';
+import { ProfileInfo } from './ProfileInfo/ProfileInfo';
 
-export const Profile = () => (
+export interface ProfileProps extends MyPostsProps {}
+
+export const Profile = ({ posts }: ProfileProps) => (
     <div className={styles.content}>
-        <img
-            src="https://www.industrialempathy.com/img/remote/ZiClJf-1920w.jpg "
-            alt="background"
-        />
-        <div>ava + desc</div>
-        <MyPosts />
+        <ProfileInfo />
+        <MyPosts posts={posts} />
     </div>
 );

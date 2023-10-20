@@ -1,9 +1,9 @@
-interface PostProps {
+interface PostItemProps {
     message: string;
     likesCount: number;
 }
 
-export const Post = (props: PostProps) => {
+export const PostItem = (props: PostItemProps) => {
     return (
         <div>
             {props.message}

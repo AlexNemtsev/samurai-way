@@ -1,13 +1,20 @@
-import { Post } from './Post/Post';
+import { PostItem } from './Post/PostItem';
+import { Post } from '../../../types/Post';
 
-export const MyPosts = () => (
+export interface MyPostsProps {
+    posts: Post[];
+}
+
+export const MyPosts = ({ posts }: MyPostsProps) => (
     <div>
-        my posts <div>New post</div>
+        <h3>My posts</h3>
+        <div>New post</div>
         <textarea></textarea>
         <button>Add post</button>
         <div>
-            <Post message="Hi, how are you?" likesCount={6} />
-            <Post message="It's my first post" likesCount={1} />
+            {posts.map((post) => (
+                <PostItem message={post.text} likesCount={post.likes} key={post.id} />
+            ))}
         </div>
     </div>
 );
