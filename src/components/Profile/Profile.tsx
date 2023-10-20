@@ -1,8 +1,8 @@
-// import styles from './Profile.module.css';
+import styles from './Profile.module.css';
 import { MyPosts } from './MyPosts/MyPosts';
 
 export const Profile = () => (
-    <div>
+    <div className={styles.content}>
         <img
             src="https://www.industrialempathy.com/img/remote/ZiClJf-1920w.jpg "
             alt="background"
