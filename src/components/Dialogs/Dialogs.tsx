@@ -5,20 +5,22 @@ import { Dialog } from '../../types/Dialog';
 import { Message } from '../../types/Message';
 
 export interface DialogsProps {
-    dialogs: Dialog[];
-    messages: Message[];
+    state: {
+        dialogs: Dialog[];
+        messages: Message[];
+    };
 }
 
-export const Dialogs = ({ dialogs, messages }: DialogsProps) => {
+export const Dialogs = (props: DialogsProps) => {
     return (
         <div className={styles.dialogs}>
             <div className={styles.dialogsItems}>
-                {dialogs.map((user) => (
+                {props.state.dialogs.map((user) => (
                     <DialogItem userId={user.id} userName={user.userName} />
                 ))}
             </div>
             <div className={styles.messages}>
-                {messages.map((msg) => (
+                {props.state.messages.map((msg) => (
                     <MessageItem msgText={msg.text} key={msg.id} />
                 ))}
             </div>

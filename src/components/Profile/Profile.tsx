@@ -4,9 +4,9 @@ import { ProfileInfo } from './ProfileInfo/ProfileInfo';
 
 export interface ProfileProps extends MyPostsProps {}
 
-export const Profile = ({ posts }: ProfileProps) => (
+export const Profile = (props: ProfileProps) => (
     <div className={styles.content}>
         <ProfileInfo />
-        <MyPosts posts={posts} />
+        <MyPosts {...props} />
     </div>
 );
