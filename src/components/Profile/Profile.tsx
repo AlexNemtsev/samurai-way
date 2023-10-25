@@ -1,8 +1,8 @@
 import styles from './Profile.module.css';
-import { MyPosts, MyPostsProps } from './MyPosts/MyPosts';
+import { MyPosts } from './MyPosts/MyPosts';
 import { ProfileInfo } from './ProfileInfo/ProfileInfo';
 
-export interface ProfileProps extends MyPostsProps {}
+type ProfileProps = Parameters<typeof MyPosts>[0];
 
 export const Profile = (props: ProfileProps) => (
     <div className={styles.content}>

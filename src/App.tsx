@@ -7,15 +7,15 @@ import { Profile } from './components/Profile/Profile';
 import { News } from './components/News/News';
 import { Music } from './components/Music/Music';
 import { Settings } from './components/Settings/Settings';
-import { State } from './types/State';
+import { store } from './redux/store';
 
 interface AppProps {
-    state: State;
-    addPost: () => void;
-    updateNewPostText: (newText: string) => void;
+    store: typeof store;
 }
 
-function App(props: AppProps) {
+function App({ store }: AppProps) {
+    const dispatch = store.dispatch.bind(store);
+
     return (
         <div className="app-wrapper">
             <Header />
@@ -24,16 +24,12 @@ function App(props: AppProps) {
                 <Switch>
                     <Route
                         render={() => (
-                            <Profile
-                                profilePage={props.state.profilePage}
-                                addPost={props.addPost}
-                                updateNewPostText={props.updateNewPostText}
-                            />
+                            <Profile profilePage={store.state.profilePage} dispatch={dispatch} />
                         )}
                         path="/profile"
                     />
                     <Route
-                        render={() => <Dialogs state={props.state.messagesPage} />}
+                        render={() => <Dialogs state={store.state.messagesPage} />}
                         path="/messages"
                     />
                     <Route component={News} path="/news" />

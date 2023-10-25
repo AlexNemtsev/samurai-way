@@ -4,7 +4,7 @@ import { DialogItem } from './DialogItem/DialogItem';
 import { Dialog } from '../../types/Dialog';
 import { Message } from '../../types/Message';
 
-export interface DialogsProps {
+interface DialogsProps {
     state: {
         dialogs: Dialog[];
         messages: Message[];
