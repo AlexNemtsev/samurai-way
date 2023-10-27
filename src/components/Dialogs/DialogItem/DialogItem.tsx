@@ -2,7 +2,7 @@ import styles from './DialogItem.module.css';
 import { NavLink } from 'react-router-dom';
 
 interface DialogItemProps {
-    userId: number;
+    userId: string;
     userName: string;
 }
 

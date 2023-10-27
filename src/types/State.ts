@@ -6,6 +6,7 @@ export interface State {
     messagesPage: {
         dialogs: Dialog[];
         messages: Message[];
+        newMessageText: string;
     };
     profilePage: {
         posts: Post[];

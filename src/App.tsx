@@ -29,7 +29,9 @@ function App({ store }: AppProps) {
                         path="/profile"
                     />
                     <Route
-                        render={() => <Dialogs state={store.state.messagesPage} />}
+                        render={() => (
+                            <Dialogs dialogsPage={store.state.messagesPage} dispatch={dispatch} />
+                        )}
                         path="/messages"
                     />
                     <Route component={News} path="/news" />

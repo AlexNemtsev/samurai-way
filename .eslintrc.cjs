@@ -13,5 +13,13 @@ module.exports = {
     rules: {
         'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
         'lines-between-class-members': 'warn',
+        'padding-line-between-statements': [
+            'warn',
+            {
+                blankLine: 'always',
+                prev: ['const', 'let', 'var'],
+                next: '*',
+            },
+        ],
     },
 };

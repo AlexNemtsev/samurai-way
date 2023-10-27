@@ -1,4 +1,4 @@
 export interface Dialog {
-    id: number;
+    id: string;
     userName: string;
 }
