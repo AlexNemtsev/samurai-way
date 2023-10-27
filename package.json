@@ -28,11 +28,8 @@
         "web-vitals": "2.1.0"
     },
     "scripts": {
-        "start": "react-scripts start",
-        "build": "react-scripts build",
-        "test": "react-scripts test",
-        "eject": "react-scripts eject",
-        "predeploy": "npm run build",
+        "dev": "vite",
+        "build": "tsc && vite build",
         "deploy": "gh-pages -d build",
         "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0 --fix"
     },
@@ -63,7 +60,8 @@
         "eslint-config-prettier": "^9.0.0",
         "eslint-plugin-prettier": "^5.0.1",
         "eslint-plugin-react-refresh": "^0.4.3",
-        "prettier": "3.0.3"
-    },
-    "packageManager": "yarn@3.6.4"
+        "prettier": "3.0.3",
+        "@vitejs/plugin-react": "^4.0.3",
+        "vite": "^4.4.5"
+    }
 }
