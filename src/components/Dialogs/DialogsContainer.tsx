@@ -1,16 +1,15 @@
+import { useContext } from 'react';
 import {
     updNewMessageTextActionCreator,
     sendMessageActionCreator,
 } from '../../redux/dialogsReducer';
-import { Store } from 'redux';
 import { Dialogs } from './Dialogs';
+import { StoreContext } from '../../StoreContext';
 
-interface DialogsContainer {
-    store: Store;
-}
+export const DialogsContainer = () => {
+    const store = useContext(StoreContext);
 
-export const DialogsContainer = ({ store }: DialogsContainer) => {
-    const dialogsPage = store.getState().dialogsReducer;
+    const dialogsPage = store.getState().dialogsPage;
 
     const updateNewMessage = (text: string) => {
         store.dispatch(updNewMessageTextActionCreator(text));

@@ -1,12 +1,11 @@
+import { useContext } from 'react';
 import { updNewPostTextActionCreator, addPostActionCreator } from '../../../redux/profileReducer';
 import { MyPosts } from './MyPosts';
-import { Store } from 'redux';
+import { StoreContext } from '../../../StoreContext';
 
-interface MyPostsContainePropsProps {
-    store: Store;
-}
+export const MyPostsContainer = () => {
+    const store = useContext(StoreContext);
 
-export const MyPostsContainer = ({ store }: MyPostsContainePropsProps) => {
     const profilePage = store.getState().profileReducer;
 
     const updateNewPostText = (text: string) => {
