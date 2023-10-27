@@ -1,26 +1,22 @@
 import { PostItem } from './Post/PostItem';
-import { Post } from '../../../types/Post';
 import { ChangeEvent } from 'react';
-import { store } from '../../../redux/store';
-import { updNewPostTextActionCreator, addPostActionCreator } from '../../../redux/profileReducer';
+import { PostsState } from '../../../types/PostsState';
 
 interface MyPostsProps {
-    profilePage: {
-        posts: Post[];
-        newPostText: string;
-    };
-    dispatch: typeof store.dispatch;
+    profilePage: PostsState;
+    addPost: () => void;
+    updateNewPostText: (text: string) => void;
 }
 
 export const MyPosts = (props: MyPostsProps) => {
     const onInputChangeHandler = (event: ChangeEvent<HTMLTextAreaElement>) => {
         const newValue = event.currentTarget.value;
 
-        props.dispatch(updNewPostTextActionCreator(newValue));
+        props.updateNewPostText(newValue);
     };
 
     const onBtnClickHandler = () => {
-        props.dispatch(addPostActionCreator());
+        props.addPost();
     };
 
     return (

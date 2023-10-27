@@ -1,15 +1,9 @@
 import { v1 } from 'uuid';
 import { Message } from '../types/Message';
-import { Dialog } from '../types/Dialog';
 import { Reducer } from 'redux';
+import { DialogsState } from '../types/DialogsState';
 
-interface State {
-    dialogs: Dialog[];
-    messages: Message[];
-    newMessageText: string;
-}
-
-const initState: State = {
+const initState: DialogsState = {
     dialogs: [
         { id: v1(), userName: 'Vasya' },
         { id: v1(), userName: 'Petya' },
@@ -38,8 +32,7 @@ const SEND_MESSAGE = 'SEND_MESSAGE';
 
 const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE_NEW_MESSAGE_TEXT';
 
-/* eslint-disable no-case-declarations */
-const dialogsReducer: Reducer<State> = (state = initState, action): State => {
+const dialogsReducer: Reducer<DialogsState> = (state = initState, action): DialogsState => {
     switch (action.type) {
         case SEND_MESSAGE:
             const newMessage: Message = {

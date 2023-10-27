@@ -1,13 +1,9 @@
 import { v1 } from 'uuid';
 import { Post } from '../types/Post';
 import { Reducer } from 'redux';
+import { PostsState } from '../types/PostsState';
 
-interface State {
-    posts: Post[];
-    newPostText: string;
-}
-
-const initState: State = {
+const initState: PostsState = {
     posts: [
         {
             id: v1(),
@@ -27,8 +23,7 @@ const ADD_POST = 'ADD_POST';
 
 const UPDATE_NEW_POST_TEXT = 'UPDATE_NEW_POST_TEXT';
 
-/* eslint-disable no-case-declarations */
-const profileReducer: Reducer<State> = (state = initState, action): State => {
+const profileReducer: Reducer<PostsState> = (state = initState, action): PostsState => {
     switch (action.type) {
         case ADD_POST:
             const newPost: Post = {
