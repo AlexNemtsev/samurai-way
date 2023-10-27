@@ -7,7 +7,7 @@ import { Profile } from './components/Profile/Profile';
 import { News } from './components/News/News';
 import { Music } from './components/Music/Music';
 import { Settings } from './components/Settings/Settings';
-import { store } from './redux/store';
+import { store } from './redux/reduxStore';
 
 interface AppProps {
     store: typeof store;
@@ -24,13 +24,19 @@ function App({ store }: AppProps) {
                 <Switch>
                     <Route
                         render={() => (
-                            <Profile profilePage={store.state.profilePage} dispatch={dispatch} />
+                            <Profile
+                                profilePage={store.getState().profileReducer}
+                                dispatch={dispatch}
+                            />
                         )}
                         path="/profile"
                     />
                     <Route
                         render={() => (
-                            <Dialogs dialogsPage={store.state.messagesPage} dispatch={dispatch} />
+                            <Dialogs
+                                dialogsPage={store.getState().dialogsReducer}
+                                dispatch={dispatch}
+                            />
                         )}
                         path="/messages"
                     />

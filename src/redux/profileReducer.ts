@@ -1,18 +1,34 @@
 import { v1 } from 'uuid';
-import { PayloadAction } from './PayloadAction';
 import { Post } from '../types/Post';
+import { Reducer } from 'redux';
 
 interface State {
     posts: Post[];
     newPostText: string;
 }
 
+const initState: State = {
+    posts: [
+        {
+            id: v1(),
+            text: 'Hi, how are you?',
+            likes: 6,
+        },
+        {
+            id: v1(),
+            text: "It's my first post",
+            likes: 1,
+        },
+    ],
+    newPostText: '',
+};
+
 const ADD_POST = 'ADD_POST';
 
 const UPDATE_NEW_POST_TEXT = 'UPDATE_NEW_POST_TEXT';
 
 /* eslint-disable no-case-declarations */
-const profileReducer = (state: State, action: PayloadAction<string | undefined>): State => {
+const profileReducer: Reducer<State> = (state = initState, action): State => {
     switch (action.type) {
         case ADD_POST:
             const newPost: Post = {
@@ -29,13 +45,13 @@ const profileReducer = (state: State, action: PayloadAction<string | undefined>)
     }
 };
 
-export const addPostActionCreator = (): PayloadAction => {
+export const addPostActionCreator = () => {
     return {
         type: 'ADD_POST',
     };
 };
 
-export const updNewPostTextActionCreator = (newText: string): PayloadAction<string> => {
+export const updNewPostTextActionCreator = (newText: string) => {
     return {
         type: 'UPDATE_NEW_POST_TEXT',
         payload: newText,
