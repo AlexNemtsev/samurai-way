@@ -1,29 +1,31 @@
 import { PostItem } from './Post/PostItem';
-import { ChangeEvent } from 'react';
+import { ChangeEvent, useState } from 'react';
 import { PostsState } from '../../../types/PostsState';
 
 interface MyPostsProps {
     profilePage: PostsState;
-    addPost: () => void;
-    updateNewPostText: (text: string) => void;
+    addPost: (text: string) => void;
 }
 
 export const MyPosts = (props: MyPostsProps) => {
+    const [newPostText, setNewPostText] = useState('');
+
     const onInputChangeHandler = (event: ChangeEvent<HTMLTextAreaElement>) => {
         const newValue = event.currentTarget.value;
 
-        props.updateNewPostText(newValue);
+        setNewPostText(newValue);
     };
 
     const onBtnClickHandler = () => {
-        props.addPost();
+        props.addPost(newPostText);
+        setNewPostText('');
     };
 
     return (
         <div>
             <h3>My posts</h3>
             <div>New post</div>
-            <textarea value={props.profilePage.newPostText} onChange={onInputChangeHandler} />
+            <textarea value={newPostText} onChange={onInputChangeHandler} />
             <button onClick={onBtnClickHandler}>Add post</button>
             <div>
                 {props.profilePage.posts.map((post) => (

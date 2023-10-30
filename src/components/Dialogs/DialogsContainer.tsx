@@ -1,7 +1,4 @@
-import {
-    updNewMessageTextActionCreator,
-    sendMessageActionCreator,
-} from '../../redux/dialogsReducer';
+import { sendMessageActionCreator } from '../../redux/dialogsReducer';
 import { Dialogs } from './Dialogs';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 
@@ -10,19 +7,9 @@ export const DialogsContainer = () => {
 
     const dispatch = useAppDispatch();
 
-    const updateNewMessage = (text: string) => {
-        dispatch(updNewMessageTextActionCreator(text));
+    const sendMessage = (text: string) => {
+        dispatch(sendMessageActionCreator(text));
     };
 
-    const sendMessage = () => {
-        dispatch(sendMessageActionCreator());
-    };
-
-    return (
-        <Dialogs
-            sendMessage={sendMessage}
-            updateNewMessage={updateNewMessage}
-            dialogsPage={dialogsPage}
-        />
-    );
+    return <Dialogs sendMessage={sendMessage} dialogsPage={dialogsPage} />;
 };

@@ -2,6 +2,7 @@ import { v1 } from 'uuid';
 import { Message } from '../types/Message';
 import { Reducer } from 'redux';
 import { DialogsState } from '../types/DialogsState';
+import { PayloadAction } from './PayloadAction';
 
 const initState: DialogsState = {
     dialogs: [
@@ -25,38 +26,34 @@ const initState: DialogsState = {
             text: 'Yo',
         },
     ],
-    newMessageText: '',
 };
 
 const SEND_MESSAGE = 'SEND_MESSAGE';
 
-const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE_NEW_MESSAGE_TEXT';
+const dialogsReducer: Reducer<DialogsState> = (
+    state = initState,
+    action: PayloadAction<string>
+): DialogsState => {
+    let newMessage: Message;
 
-const dialogsReducer: Reducer<DialogsState> = (state = initState, action): DialogsState => {
     switch (action.type) {
         case SEND_MESSAGE:
-            const newMessage: Message = {
+            newMessage = {
                 id: v1(),
-                text: state.newMessageText,
+                text: action.payload ?? '',
             };
 
-            return { ...state, messages: [...state.messages, newMessage], newMessageText: '' };
-        case UPDATE_NEW_MESSAGE_TEXT:
-            return { ...state, newMessageText: action.payload ?? '' };
+            return { ...state, messages: [...state.messages, newMessage] };
+
         default:
             return state;
     }
 };
 
-export const sendMessageActionCreator = () => {
+export const sendMessageActionCreator = (text: string): PayloadAction<string> => {
     return {
         type: 'SEND_MESSAGE',
-    };
-};
-export const updNewMessageTextActionCreator = (newText: string) => {
-    return {
-        type: 'UPDATE_NEW_MESSAGE_TEXT',
-        payload: newText,
+        payload: text,
     };
 };
 

@@ -2,6 +2,7 @@ import { v1 } from 'uuid';
 import { Post } from '../types/Post';
 import { Reducer } from 'redux';
 import { PostsState } from '../types/PostsState';
+import { PayloadAction } from './PayloadAction';
 
 const initState: PostsState = {
     posts: [
@@ -16,40 +17,34 @@ const initState: PostsState = {
             likes: 1,
         },
     ],
-    newPostText: '',
 };
 
 const ADD_POST = 'ADD_POST';
 
-const UPDATE_NEW_POST_TEXT = 'UPDATE_NEW_POST_TEXT';
+const profileReducer: Reducer<PostsState> = (
+    state = initState,
+    action: PayloadAction<string>
+): PostsState => {
+    let newPost: Post;
 
-const profileReducer: Reducer<PostsState> = (state = initState, action): PostsState => {
     switch (action.type) {
         case ADD_POST:
-            const newPost: Post = {
+            newPost = {
                 id: v1(),
-                text: state.newPostText,
+                text: action.payload ?? '',
                 likes: 0,
             };
 
-            return { ...state, posts: [...state.posts, newPost], newPostText: '' };
-        case UPDATE_NEW_POST_TEXT:
-            return { ...state, newPostText: action.payload ?? '' };
+            return { ...state, posts: [...state.posts, newPost] };
         default:
             return state;
     }
 };
 
-export const addPostActionCreator = () => {
+export const addPostActionCreator = (text: string): PayloadAction<string> => {
     return {
         type: 'ADD_POST',
-    };
-};
-
-export const updNewPostTextActionCreator = (newText: string) => {
-    return {
-        type: 'UPDATE_NEW_POST_TEXT',
-        payload: newText,
+        payload: text,
     };
 };
 

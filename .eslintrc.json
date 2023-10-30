@@ -20,7 +20,6 @@
                 "prev": ["const", "let", "var"],
                 "next": "*"
             }
-        ],
-        "no-case-declarations": "off"
+        ]
     }
 }

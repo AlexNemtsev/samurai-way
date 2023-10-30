@@ -1,24 +1,26 @@
 import styles from './Dialogs.module.css';
 import { MessageItem } from './Message/MessageItem';
 import { DialogItem } from './DialogItem/DialogItem';
-import { ChangeEvent } from 'react';
+import { ChangeEvent, useState } from 'react';
 import { DialogsState } from '../../types/DialogsState';
 
 interface DialogsProps {
     dialogsPage: DialogsState;
-    sendMessage: () => void;
-    updateNewMessage: (text: string) => void;
+    sendMessage: (text: string) => void;
 }
 
 export const Dialogs = (props: DialogsProps) => {
+    const [newMessageText, setNewMessageText] = useState('');
+
     const onInputChangeHandler = (event: ChangeEvent<HTMLTextAreaElement>) => {
         const newValue = event.currentTarget.value;
 
-        props.updateNewMessage(newValue);
+        setNewMessageText(newValue);
     };
 
     const onBtnClickHandler = () => {
-        props.sendMessage();
+        props.sendMessage(newMessageText);
+        setNewMessageText('');
     };
 
     return (
@@ -34,7 +36,7 @@ export const Dialogs = (props: DialogsProps) => {
                 ))}
                 <textarea
                     onChange={onInputChangeHandler}
-                    value={props.dialogsPage.newMessageText}
+                    value={newMessageText}
                     placeholder="Enter a message"
                 ></textarea>
                 <button onClick={onBtnClickHandler}>Send</button>

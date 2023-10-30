@@ -1,4 +1,4 @@
-import { updNewPostTextActionCreator, addPostActionCreator } from '../../../redux/profileReducer';
+import { addPostActionCreator } from '../../../redux/profileReducer';
 import { MyPosts } from './MyPosts';
 import { useAppDispatch, useAppSelector } from '../../../hooks';
 
@@ -7,19 +7,9 @@ export const MyPostsContainer = () => {
 
     const dispatch = useAppDispatch();
 
-    const updateNewPostText = (text: string) => {
-        dispatch(updNewPostTextActionCreator(text));
+    const addPost = (text: string) => {
+        dispatch(addPostActionCreator(text));
     };
 
-    const addPost = () => {
-        dispatch(addPostActionCreator());
-    };
-
-    return (
-        <MyPosts
-            addPost={addPost}
-            updateNewPostText={updateNewPostText}
-            profilePage={profilePage}
-        />
-    );
+    return <MyPosts addPost={addPost} profilePage={profilePage} />;
 };

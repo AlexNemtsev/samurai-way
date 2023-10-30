@@ -7,7 +7,7 @@ export const PostItem = (props: PostItemProps) => {
     return (
         <div>
             {props.message}
-            <span>like: {props.likesCount}</span>
+            <span> likes: {props.likesCount}</span>
         </div>
     );
 };
