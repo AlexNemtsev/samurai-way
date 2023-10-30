@@ -3,19 +3,13 @@ import { BrowserRouter } from 'react-router-dom';
 import App from './App';
 import './index.css';
 import { store } from './redux/reduxStore';
-import { Provider } from './StoreContext';
+import { Provider } from 'react-redux';
 
-const rerenderEntireTree = () => {
-    ReactDOM.render(
-        <Provider store={store}>
-            <BrowserRouter>
-                <App />
-            </BrowserRouter>
-        </Provider>,
-        document.getElementById('root')
-    );
-};
-
-rerenderEntireTree();
-
-store.subscribe(rerenderEntireTree);
+ReactDOM.render(
+    <Provider store={store}>
+        <BrowserRouter>
+            <App />
+        </BrowserRouter>
+    </Provider>,
+    document.getElementById('root')
+);

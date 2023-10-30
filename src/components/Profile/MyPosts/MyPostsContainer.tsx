@@ -1,19 +1,18 @@
-import { useContext } from 'react';
 import { updNewPostTextActionCreator, addPostActionCreator } from '../../../redux/profileReducer';
 import { MyPosts } from './MyPosts';
-import { StoreContext } from '../../../StoreContext';
+import { useAppDispatch, useAppSelector } from '../../../hooks';
 
 export const MyPostsContainer = () => {
-    const store = useContext(StoreContext);
+    const profilePage = useAppSelector((state) => state.profilePage);
 
-    const profilePage = store.getState().profileReducer;
+    const dispatch = useAppDispatch();
 
     const updateNewPostText = (text: string) => {
-        store.dispatch(updNewPostTextActionCreator(text));
+        dispatch(updNewPostTextActionCreator(text));
     };
 
     const addPost = () => {
-        store.dispatch(addPostActionCreator());
+        dispatch(addPostActionCreator());
     };
 
     return (

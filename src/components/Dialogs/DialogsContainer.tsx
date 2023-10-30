@@ -1,22 +1,21 @@
-import { useContext } from 'react';
 import {
     updNewMessageTextActionCreator,
     sendMessageActionCreator,
 } from '../../redux/dialogsReducer';
 import { Dialogs } from './Dialogs';
-import { StoreContext } from '../../StoreContext';
+import { useAppDispatch, useAppSelector } from '../../hooks';
 
 export const DialogsContainer = () => {
-    const store = useContext(StoreContext);
+    const dialogsPage = useAppSelector((state) => state.dialogsPage);
 
-    const dialogsPage = store.getState().dialogsPage;
+    const dispatch = useAppDispatch();
 
     const updateNewMessage = (text: string) => {
-        store.dispatch(updNewMessageTextActionCreator(text));
+        dispatch(updNewMessageTextActionCreator(text));
     };
 
     const sendMessage = () => {
-        store.dispatch(sendMessageActionCreator());
+        dispatch(sendMessageActionCreator());
     };
 
     return (
