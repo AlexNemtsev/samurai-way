@@ -1,6 +1,6 @@
 import { PostItem } from './Post/PostItem';
 import { ChangeEvent, useState } from 'react';
-import { PostsState } from '../../../types/PostsState';
+import { PostsState } from '../../../redux/profile-reducer';
 
 interface MyPostsProps {
     profilePage: PostsState;

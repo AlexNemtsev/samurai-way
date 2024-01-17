@@ -2,7 +2,7 @@ import styles from './Dialogs.module.css';
 import { MessageItem } from './Message/MessageItem';
 import { DialogItem } from './DialogItem/DialogItem';
 import { ChangeEvent, useState } from 'react';
-import { DialogsState } from '../../types/DialogsState';
+import { DialogsState } from '../../redux/dialogs-reducer';
 
 interface DialogsProps {
     dialogsPage: DialogsState;

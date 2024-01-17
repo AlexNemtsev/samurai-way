@@ -1,4 +1,4 @@
-import { sendMessageActionCreator } from '../../redux/dialogsReducer';
+import { sendMessageActionCreator } from '../../redux/dialogs-reducer';
 import { Dialogs } from './Dialogs';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 

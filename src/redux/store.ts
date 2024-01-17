@@ -1,8 +1,8 @@
 import { v1 } from 'uuid';
 import { State } from '../types/State';
 import { PayloadAction } from './PayloadAction';
-import dialogsReducer from './dialogsReducer';
-import profileReducer from './profileReducer';
+import dialogsReducer from './dialogs-reducer';
+import profileReducer from './profile-reducer';
 
 const initState: State = {
     messagesPage: {

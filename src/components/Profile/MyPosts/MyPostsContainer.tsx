@@ -1,4 +1,4 @@
-import { addPostActionCreator } from '../../../redux/profileReducer';
+import { addPostActionCreator } from '../../../redux/profile-reducer';
 import { MyPosts } from './MyPosts';
 import { useAppDispatch, useAppSelector } from '../../../hooks';
 

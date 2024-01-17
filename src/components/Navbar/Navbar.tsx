@@ -7,6 +7,7 @@ const navLinks = [
     { text: 'News', link: '/news' },
     { text: 'Music', link: '/music' },
     { text: 'Settings', link: '/settings' },
+    { text: 'Users', link: '/users' },
 ];
 
 export const Navbar = () => (

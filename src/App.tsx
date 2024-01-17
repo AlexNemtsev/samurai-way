@@ -7,6 +7,7 @@ import { News } from './components/News/News';
 import { Music } from './components/Music/Music';
 import { Settings } from './components/Settings/Settings';
 import { DialogsContainer } from './components/Dialogs/DialogsContainer';
+import { UsersContainer } from './components/Users/UsersContainer';
 
 function App() {
     return (
@@ -17,6 +18,7 @@ function App() {
                 <Switch>
                     <Route render={() => <Profile />} path="/profile" />
                     <Route render={() => <DialogsContainer />} path="/messages" />
+                    <Route render={() => <UsersContainer />} path="/users" />
                     <Route component={News} path="/news" />
                     <Route component={Music} path="/music" />
                     <Route component={Settings} path="/settings" />

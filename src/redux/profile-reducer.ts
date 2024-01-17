@@ -1,8 +1,16 @@
 import { v1 } from 'uuid';
-import { Post } from '../types/Post';
-import { Reducer } from 'redux';
-import { PostsState } from '../types/PostsState';
+
 import { PayloadAction } from './PayloadAction';
+
+interface Post {
+    id: string;
+    text: string;
+    likes: number;
+}
+
+export interface PostsState {
+    posts: Post[];
+}
 
 const initState: PostsState = {
     posts: [
@@ -19,19 +27,20 @@ const initState: PostsState = {
     ],
 };
 
-const ADD_POST = 'ADD_POST';
+interface AddPostAction extends PayloadAction<string> {
+    type: 'ADD_POST';
+}
 
-const profileReducer: Reducer<PostsState> = (
-    state = initState,
-    action: PayloadAction<string>
-): PostsState => {
+type Action = AddPostAction;
+
+const profileReducer = (state = initState, action: Action): PostsState => {
     let newPost: Post;
 
     switch (action.type) {
-        case ADD_POST:
+        case 'ADD_POST':
             newPost = {
                 id: v1(),
-                text: action.payload ?? '',
+                text: action.payload,
                 likes: 0,
             };
 
@@ -41,7 +50,7 @@ const profileReducer: Reducer<PostsState> = (
     }
 };
 
-export const addPostActionCreator = (text: string): PayloadAction<string> => {
+export const addPostActionCreator = (text: string): AddPostAction => {
     return {
         type: 'ADD_POST',
         payload: text,

@@ -1,8 +1,20 @@
 import { v1 } from 'uuid';
-import { Message } from '../types/Message';
-import { Reducer } from 'redux';
-import { DialogsState } from '../types/DialogsState';
 import { PayloadAction } from './PayloadAction';
+
+type Dialog = {
+    id: string;
+    userName: string;
+};
+
+type Message = {
+    id: string;
+    text: string;
+};
+
+export type DialogsState = {
+    dialogs: Dialog[];
+    messages: Message[];
+};
 
 const initState: DialogsState = {
     dialogs: [
@@ -28,16 +40,17 @@ const initState: DialogsState = {
     ],
 };
 
-const SEND_MESSAGE = 'SEND_MESSAGE';
+interface SendMessageAction extends PayloadAction<string> {
+    type: 'SEND_MESSAGE';
+}
 
-const dialogsReducer: Reducer<DialogsState> = (
-    state = initState,
-    action: PayloadAction<string>
-): DialogsState => {
+type Action = SendMessageAction;
+
+const dialogsReducer = (state = initState, action: Action): DialogsState => {
     let newMessage: Message;
 
     switch (action.type) {
-        case SEND_MESSAGE:
+        case 'SEND_MESSAGE':
             newMessage = {
                 id: v1(),
                 text: action.payload ?? '',
@@ -50,7 +63,7 @@ const dialogsReducer: Reducer<DialogsState> = (
     }
 };
 
-export const sendMessageActionCreator = (text: string): PayloadAction<string> => {
+export const sendMessageActionCreator = (text: string): SendMessageAction => {
     return {
         type: 'SEND_MESSAGE',
         payload: text,
