@@ -1,10 +1,10 @@
 import styles from './Profile.module.css';
 import { ProfileInfo } from './ProfileInfo/ProfileInfo';
-import { MyPostsContainer } from './MyPosts/MyPostsContainer';
+import { MyPosts } from './MyPosts/MyPosts';
 
 export const Profile = () => (
     <div className={styles.content}>
         <ProfileInfo />
-        <MyPostsContainer />
+        <MyPosts />
     </div>
 );

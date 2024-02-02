@@ -1,15 +1,17 @@
 import { PayloadAction } from './PayloadAction';
 
 export type User = {
-    id: string;
-    fullName: string;
-    photoUrl: string;
+    name: string;
+    id: number;
+    uniqueUrlName?: string;
+    photos: Photo;
     status?: string;
     followed: boolean;
-    location: {
-        country: string;
-        city: string;
-    };
+};
+
+type Photo = {
+    small?: string;
+    large?: string;
 };
 
 type UserId = Pick<User, 'id'>;
@@ -48,7 +50,7 @@ const usersReducer = (state = initState, action: Action): UsersState => {
     }
 };
 
-export const toggleFollowAC = (userId: string): ToggleFollowAction => ({
+export const toggleFollowAC = (userId: number): ToggleFollowAction => ({
     type: 'TOGGLE_FOLLOW',
     payload: { id: userId },
 });

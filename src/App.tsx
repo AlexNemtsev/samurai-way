@@ -6,8 +6,8 @@ import { Profile } from './components/Profile/Profile';
 import { News } from './components/News/News';
 import { Music } from './components/Music/Music';
 import { Settings } from './components/Settings/Settings';
-import { DialogsContainer } from './components/Dialogs/DialogsContainer';
-import { UsersContainer } from './components/Users/UsersContainer';
+import { Users } from './components/Users/Users';
+import { Dialogs } from './components/Dialogs/Dialogs';
 
 function App() {
     return (
@@ -17,8 +17,8 @@ function App() {
             <div className="app-wrapper-content">
                 <Switch>
                     <Route render={() => <Profile />} path="/profile" />
-                    <Route render={() => <DialogsContainer />} path="/messages" />
-                    <Route render={() => <UsersContainer />} path="/users" />
+                    <Route render={() => <Dialogs />} path="/messages" />
+                    <Route render={() => <Users />} path="/users" />
                     <Route component={News} path="/news" />
                     <Route component={Music} path="/music" />
                     <Route component={Settings} path="/settings" />

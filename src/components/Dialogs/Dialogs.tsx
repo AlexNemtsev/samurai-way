@@ -2,15 +2,15 @@ import styles from './Dialogs.module.css';
 import { MessageItem } from './Message/MessageItem';
 import { DialogItem } from './DialogItem/DialogItem';
 import { ChangeEvent, useState } from 'react';
-import { DialogsState } from '../../redux/dialogs-reducer';
+import { sendMessageActionCreator } from '../../redux/dialogs-reducer';
+import { useAppDispatch, useAppSelector } from '../../hooks';
 
-interface DialogsProps {
-    dialogsPage: DialogsState;
-    sendMessage: (text: string) => void;
-}
-
-export const Dialogs = (props: DialogsProps) => {
+export const Dialogs = () => {
     const [newMessageText, setNewMessageText] = useState('');
+
+    const dialogsPage = useAppSelector((state) => state.dialogsPage);
+
+    const dispatch = useAppDispatch();
 
     const onInputChangeHandler = (event: ChangeEvent<HTMLTextAreaElement>) => {
         const newValue = event.currentTarget.value;
@@ -19,19 +19,19 @@ export const Dialogs = (props: DialogsProps) => {
     };
 
     const onBtnClickHandler = () => {
-        props.sendMessage(newMessageText);
+        dispatch(sendMessageActionCreator(newMessageText));
         setNewMessageText('');
     };
 
     return (
         <div className={styles.dialogs}>
             <div className={styles.dialogsItems}>
-                {props.dialogsPage.dialogs.map((user) => (
+                {dialogsPage.dialogs.map((user) => (
                     <DialogItem userId={user.id} userName={user.userName} key={user.id} />
                 ))}
             </div>
             <div className={styles.messages}>
-                {props.dialogsPage.messages.map((msg) => (
+                {dialogsPage.messages.map((msg) => (
                     <MessageItem msgText={msg.text} key={msg.id} />
                 ))}
                 <textarea
