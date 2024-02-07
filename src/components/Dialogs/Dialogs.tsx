@@ -2,7 +2,7 @@ import styles from './Dialogs.module.css';
 import { MessageItem } from './Message/MessageItem';
 import { DialogItem } from './DialogItem/DialogItem';
 import { ChangeEvent, useState } from 'react';
-import { sendMessageActionCreator } from '../../redux/dialogs-reducer';
+import { sendMessageAC } from '../../redux/dialogs-reducer';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 
 export const Dialogs = () => {
@@ -19,7 +19,7 @@ export const Dialogs = () => {
     };
 
     const onBtnClickHandler = () => {
-        dispatch(sendMessageActionCreator(newMessageText));
+        dispatch(sendMessageAC(newMessageText));
         setNewMessageText('');
     };
 

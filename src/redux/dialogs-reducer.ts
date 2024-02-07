@@ -1,5 +1,4 @@
 import { v1 } from 'uuid';
-import { PayloadAction } from './PayloadAction';
 
 type Dialog = {
     id: string;
@@ -40,11 +39,7 @@ const initState: DialogsState = {
     ],
 };
 
-interface SendMessageAction extends PayloadAction<string> {
-    type: 'SEND_MESSAGE';
-}
-
-type Action = SendMessageAction;
+type Action = ReturnType<typeof sendMessageAC>;
 
 const dialogsReducer = (state = initState, action: Action): DialogsState => {
     let newMessage: Message;
@@ -63,11 +58,11 @@ const dialogsReducer = (state = initState, action: Action): DialogsState => {
     }
 };
 
-export const sendMessageActionCreator = (text: string): SendMessageAction => {
+export const sendMessageAC = (text: string) => {
     return {
         type: 'SEND_MESSAGE',
         payload: text,
-    };
+    } as const;
 };
 
 export default dialogsReducer;

@@ -1,6 +1,6 @@
 import { PostItem } from './Post/PostItem';
 import { ChangeEvent, useState } from 'react';
-import { addPostActionCreator } from '../../../redux/profile-reducer';
+import { addPostAC } from '../../../redux/profile-reducer';
 import { useAppDispatch, useAppSelector } from '../../../hooks';
 
 export const MyPosts = () => {
@@ -17,7 +17,7 @@ export const MyPosts = () => {
     };
 
     const onBtnClickHandler = () => {
-        dispatch(addPostActionCreator(newPostText));
+        dispatch(addPostAC(newPostText));
         setNewPostText('');
     };
 

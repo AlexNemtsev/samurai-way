@@ -1,7 +1,5 @@
 import { v1 } from 'uuid';
 
-import { PayloadAction } from './PayloadAction';
-
 interface Post {
     id: string;
     text: string;
@@ -27,11 +25,7 @@ const initState: PostsState = {
     ],
 };
 
-interface AddPostAction extends PayloadAction<string> {
-    type: 'ADD_POST';
-}
-
-type Action = AddPostAction;
+type Action = ReturnType<typeof addPostAC>;
 
 const profileReducer = (state = initState, action: Action): PostsState => {
     let newPost: Post;
@@ -50,11 +44,11 @@ const profileReducer = (state = initState, action: Action): PostsState => {
     }
 };
 
-export const addPostActionCreator = (text: string): AddPostAction => {
+export const addPostAC = (text: string) => {
     return {
         type: 'ADD_POST',
         payload: text,
-    };
+    } as const;
 };
 
 export default profileReducer;

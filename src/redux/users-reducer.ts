@@ -1,5 +1,3 @@
-import { PayloadAction } from './PayloadAction';
-
 export type User = {
     name: string;
     id: number;
@@ -14,25 +12,25 @@ type Photo = {
     large?: string;
 };
 
-type UserId = Pick<User, 'id'>;
-
 type UsersState = {
     users: User[];
+    pageSize: number;
+    totalUsersCount: number;
+    currentPage: number;
 };
 
 const initState: UsersState = {
     users: [],
+    pageSize: 5,
+    totalUsersCount: 0,
+    currentPage: 1,
 };
 
-interface ToggleFollowAction extends PayloadAction<UserId> {
-    type: 'TOGGLE_FOLLOW';
-}
-
-interface SetUsersAction extends PayloadAction<UsersState> {
-    type: 'SET_USERS';
-}
-
-type Action = ToggleFollowAction | SetUsersAction;
+type Action =
+    | ReturnType<typeof toggleFollowAC>
+    | ReturnType<typeof setUsersAC>
+    | ReturnType<typeof setCurrentPageAC>
+    | ReturnType<typeof setTotalUsersCountAC>;
 
 const usersReducer = (state = initState, action: Action): UsersState => {
     switch (action.type) {
@@ -40,24 +38,42 @@ const usersReducer = (state = initState, action: Action): UsersState => {
             return {
                 ...state,
                 users: state.users.map((user) =>
-                    user.id === action.payload.id ? { ...user, followed: !user.followed } : user
+                    user.id === action.payload ? { ...user, followed: !user.followed } : user
                 ),
             };
         case 'SET_USERS':
-            return { ...state, users: [...state.users, ...action.payload.users] };
+            return { ...state, users: action.payload };
+        case 'SET_CURRENT_PAGE':
+            return { ...state, currentPage: action.payload };
+        case 'SET_TOTAL_USERS_COUNT':
+            return { ...state, totalUsersCount: action.payload };
         default:
             return state;
     }
 };
 
-export const toggleFollowAC = (userId: number): ToggleFollowAction => ({
-    type: 'TOGGLE_FOLLOW',
-    payload: { id: userId },
-});
+export const toggleFollowAC = (userId: number) =>
+    ({
+        type: 'TOGGLE_FOLLOW',
+        payload: userId,
+    }) as const;
 
-export const setUsersAC = (users: User[]): SetUsersAction => ({
-    type: 'SET_USERS',
-    payload: { users },
-});
+export const setUsersAC = (users: User[]) =>
+    ({
+        type: 'SET_USERS',
+        payload: users,
+    }) as const;
+
+export const setCurrentPageAC = (page: number) =>
+    ({
+        type: 'SET_CURRENT_PAGE',
+        payload: page,
+    }) as const;
+
+export const setTotalUsersCountAC = (totalCount: number) =>
+    ({
+        type: 'SET_TOTAL_USERS_COUNT',
+        payload: totalCount,
+    }) as const;
 
 export default usersReducer;
