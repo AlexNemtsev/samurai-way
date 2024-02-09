@@ -3,8 +3,8 @@ import { ProfileInfo } from './ProfileInfo/ProfileInfo';
 import { MyPosts } from './MyPosts/MyPosts';
 
 export const Profile = () => (
-    <div className={styles.content}>
-        <ProfileInfo />
-        <MyPosts />
-    </div>
+  <div className={styles.content}>
+    <ProfileInfo />
+    <MyPosts />
+  </div>
 );

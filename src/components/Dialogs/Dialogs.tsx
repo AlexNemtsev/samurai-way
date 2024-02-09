@@ -6,41 +6,41 @@ import { sendMessageAC } from '../../redux/dialogs-reducer';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 
 export const Dialogs = () => {
-    const [newMessageText, setNewMessageText] = useState('');
+  const [newMessageText, setNewMessageText] = useState('');
 
-    const dialogsPage = useAppSelector((state) => state.dialogsPage);
+  const dialogsPage = useAppSelector((state) => state.dialogsPage);
 
-    const dispatch = useAppDispatch();
+  const dispatch = useAppDispatch();
 
-    const onInputChangeHandler = (event: ChangeEvent<HTMLTextAreaElement>) => {
-        const newValue = event.currentTarget.value;
+  const onInputChangeHandler = (event: ChangeEvent<HTMLTextAreaElement>) => {
+    const newValue = event.currentTarget.value;
 
-        setNewMessageText(newValue);
-    };
+    setNewMessageText(newValue);
+  };
 
-    const onBtnClickHandler = () => {
-        dispatch(sendMessageAC(newMessageText));
-        setNewMessageText('');
-    };
+  const onBtnClickHandler = () => {
+    dispatch(sendMessageAC(newMessageText));
+    setNewMessageText('');
+  };
 
-    return (
-        <div className={styles.dialogs}>
-            <div className={styles.dialogsItems}>
-                {dialogsPage.dialogs.map((user) => (
-                    <DialogItem userId={user.id} userName={user.userName} key={user.id} />
-                ))}
-            </div>
-            <div className={styles.messages}>
-                {dialogsPage.messages.map((msg) => (
-                    <MessageItem msgText={msg.text} key={msg.id} />
-                ))}
-                <textarea
-                    onChange={onInputChangeHandler}
-                    value={newMessageText}
-                    placeholder="Enter a message"
-                ></textarea>
-                <button onClick={onBtnClickHandler}>Send</button>
-            </div>
-        </div>
-    );
+  return (
+    <div className={styles.dialogs}>
+      <div className={styles.dialogsItems}>
+        {dialogsPage.dialogs.map((user) => (
+          <DialogItem userId={user.id} userName={user.userName} key={user.id} />
+        ))}
+      </div>
+      <div className={styles.messages}>
+        {dialogsPage.messages.map((msg) => (
+          <MessageItem msgText={msg.text} key={msg.id} />
+        ))}
+        <textarea
+          onChange={onInputChangeHandler}
+          value={newMessageText}
+          placeholder="Enter a message"
+        ></textarea>
+        <button onClick={onBtnClickHandler}>Send</button>
+      </div>
+    </div>
+  );
 };

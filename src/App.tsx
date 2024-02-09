@@ -10,22 +10,22 @@ import { Users } from './components/Users/Users';
 import { Dialogs } from './components/Dialogs/Dialogs';
 
 function App() {
-    return (
-        <div className="app-wrapper">
-            <Header />
-            <Navbar />
-            <div className="app-wrapper-content">
-                <Switch>
-                    <Route render={() => <Profile />} path="/profile" />
-                    <Route render={() => <Dialogs />} path="/messages" />
-                    <Route render={() => <Users />} path="/users" />
-                    <Route component={News} path="/news" />
-                    <Route component={Music} path="/music" />
-                    <Route component={Settings} path="/settings" />
-                </Switch>
-            </div>
-        </div>
-    );
+  return (
+    <div className="app-wrapper">
+      <Header />
+      <Navbar />
+      <div className="app-wrapper-content">
+        <Switch>
+          <Route render={() => <Profile />} path="/profile" />
+          <Route render={() => <Dialogs />} path="/messages" />
+          <Route render={() => <Users />} path="/users" />
+          <Route component={News} path="/news" />
+          <Route component={Music} path="/music" />
+          <Route component={Settings} path="/settings" />
+        </Switch>
+      </div>
+    </div>
+  );
 }
 
 export default App;

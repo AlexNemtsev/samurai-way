@@ -1,19 +1,19 @@
 .nav {
-    grid-area: n;
-    background-color: burlywood;
-    padding-left: 20px;
+  grid-area: n;
+  background-color: burlywood;
+  padding-left: 20px;
 }
 
 .nav ul {
-    list-style: none;
-    padding: 0;
+  list-style: none;
+  padding: 0;
 }
 
 .item a {
-    color: white;
-    text-decoration: none;
+  color: white;
+  text-decoration: none;
 }
 
 .item a.active {
-    color: rgb(128, 128, 128);
+  color: rgb(128, 128, 128);
 }
